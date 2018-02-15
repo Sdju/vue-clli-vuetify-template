@@ -3,15 +3,48 @@
 	#app
 		v-app(dark)
 			v-navigation-drawer(app)
+				v-toolbar(flat)
+					v-list
+						v-list-tile
+							v-list-tile-title.title Application
+				v-divider
+				v-list.pt-0(dense)
+					v-list-tile(v-for="item in items" v-bind:key="item.title" @click="$router.push(item.link)" ripple)
+						v-list-tile-action
+							v-icon {{ item.icon }}
+						v-list-tile-content
+							v-list-tile-title {{ item.title }}
 			v-toolbar(app)
 			v-content
-				v-alert(type="success" dismissible  v-bind:value="true") This is a success alert.
+				v-alert(type="success" dismissible  v-bind:value="succAlert" v-model="alert") This is a success alert.
 				router-view
-		v-footer
+		v-footer(dark)
 </template>
+
+<script lang="ts">
+	import { Component, Emit, Vue } from 'vue-property-decorator';
+
+	@Component
+	export default class App extends Vue {
+		data () {
+			return {
+				alert: true,
+
+				items: [
+					{ title: 'Home', icon: 'dashboard', link: '/' },
+					{ title: 'About', icon: 'question_answer', link: '/about' }
+				],
+			}
+		}
+	}
+</script>
+
 
 <style lang="stylus">
 	@import '~vuetify/src/stylus/main'
+
+	.footer
+		@extend .application .theme--dark.toolbar
 
 	.alert
 		@extend .mx-2, .my-2
@@ -21,14 +54,12 @@
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-align: center;
-		color: #2c3e50;
 
 	#nav
 		padding: 30px;
 
 	#nav a
 		font-weight: bold;
-		color: #2c3e50;
 
 	#nav a.router-link-exact-active
 		color: #42b983;
