@@ -13,6 +13,8 @@
 <style lang="stylus">
 	@import '~vuetify/src/stylus/main'
 
+	.alert
+		@extend .mx-2, .my-2
 
 	#app
 		font-family: 'Avenir', Helvetica, Arial, sans-serif;
