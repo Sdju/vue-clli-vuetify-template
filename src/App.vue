@@ -18,11 +18,12 @@
 			v-content
 				v-alert(type="success" dismissible  v-bind:value="succAlert" v-model="alert" transition="scale-transition") This is a success alert.
 				router-view
-		v-footer(dark)
-			v-card.text-xs-center(flat tile)
-				v-cart-text.white--text
-					| &copy;2018 —
-					strong VentumIT
+			v-footer(inset=true dark app height="auto")
+				v-flex
+					v-card.text-xs-center(flat tile)
+						v-card-text.white--text
+							| &copy;2018 —
+							strong VentumIT
 </template>
 
 <script lang="ts">
